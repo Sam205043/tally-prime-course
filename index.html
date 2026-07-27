@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AI Powered Tally Prime Professional Mastery — V3 Series. GST 2.0, TDS, Payroll, Job Costing. Soft Skill Zone Institute, Pakri, Ara.">
+<title>AI Powered Tally Prime — Soft Skill Zone Institute</title>
+<style>
+:root{
+  --navy:#1F3864;--blue:#2E74B5;--gold:#F5A623;--white:#fff;
+  --text:#1a1a2e;--muted:#5a5a78;--bg:#F0F4FA;
+  --gst:#1A7C40;--tds:#856404;--pay:#880E4F;--job:#00695C;--tax:#B71C1C;--setup:#1565C0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);font-size:15px;}
+a{text-decoration:none;color:inherit;}
+
+/* NAV */
+nav{background:var(--navy);padding:13px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
+.nb{color:#fff;font-size:16px;font-weight:800;letter-spacing:.5px;}
+.nb span{color:var(--gold);}
+.nyt{background:#FF0000;color:#fff;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700;}
+
+/* HERO */
+.hero{background:var(--navy);background-image:radial-gradient(ellipse at 70% 50%,#1a3a70 0%,transparent 60%);color:#fff;padding:48px 18px 40px;text-align:center;}
+.hbadge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,.12);border:1.5px solid var(--gold);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2px;padding:5px 16px;border-radius:30px;margin-bottom:18px;}
+.hero h1{font-size:clamp(24px,6vw,40px);font-weight:900;line-height:1.1;margin-bottom:10px;}
+.hero h1 em{color:var(--gold);font-style:normal;}
+.hero h1 small{display:block;font-size:clamp(14px,3vw,20px);font-weight:500;color:#aac4e8;margin-top:6px;}
+.htags{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin:18px 0 28px;}
+.htag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#cce0f5;font-size:11px;padding:4px 12px;border-radius:16px;}
+.hcta{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:var(--navy);font-size:15px;font-weight:800;padding:13px 28px;border-radius:50px;cursor:pointer;}
+.hcta:hover{opacity:.92;}
+
+/* STATS BAR */
+.statsbar{display:grid;grid-template-columns:repeat(4,1fr);background:#162d55;border-top:2px solid var(--gold);}
+.sbar{text-align:center;padding:16px 6px;border-right:1px solid rgba(255,255,255,.07);}
+.sbar:last-child{border:none;}
+.sn{font-size:24px;font-weight:900;color:var(--gold);}
+.sl{font-size:10px;color:#8aaace;margin-top:1px;letter-spacing:.5px;}
+
+/* MAIN */
+main{max-width:700px;margin:0 auto;padding:0 16px 40px;}
+
+/* SECTION HEADER */
+.shdr{display:flex;align-items:center;gap:12px;padding:32px 0 16px;}
+.sico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.stxt .st{font-size:18px;font-weight:800;color:var(--navy);}
+.stxt .ss{font-size:12px;color:var(--muted);}
+
+/* MODULE CARD */
+.mod{background:var(--white);border-radius:14px;border:1.5px solid #d8e8f5;margin-bottom:10px;overflow:hidden;}
+.mod-hd{display:flex;align-items:center;gap:12px;padding:15px 18px;cursor:pointer;}
+.mod-hd:hover{background:#f8fbff;}
+.mnum{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;flex-shrink:0;}
+.minfo{flex:1;}
+.mtitle{font-size:14px;font-weight:700;color:var(--navy);line-height:1.3;}
+.mmeta{font-size:11px;color:var(--muted);margin-top:2px;}
+.marr{color:var(--muted);font-size:18px;transition:transform .18s;}
+.mod.open .marr{transform:rotate(180deg);}
+.mod-body{display:none;border-top:1px solid #e8f0f8;}
+.mod.open .mod-body{display:block;}
+
+/* CHAPTER ROW */
+.chr{display:flex;align-items:flex-start;gap:10px;padding:10px 18px;border-bottom:1px solid #f0f6fc;}
+.chr:last-child{border:none;}
+.cbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:7px;flex-shrink:0;margin-top:1px;}
+.ctxt{flex:1;}
+.ctitle{font-size:13px;color:var(--text);font-weight:600;line-height:1.35;}
+.csub{font-size:11px;color:var(--muted);margin-top:2px;}
+.cnew{display:inline-block;background:#fff3cd;color:#856404;font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;margin-left:6px;vertical-align:middle;}
+.cupdated{display:inline-block;background:#d4edda;color:#1A7C40;font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;margin-left:6px;vertical-align:middle;}
+
+/* TOOLS */
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.tc{background:#fff;border-radius:12px;border:1.5px solid #d8e8f5;padding:16px 14px;}
+.tc:hover{border-color:var(--blue);}
+.tcf{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;margin-bottom:7px;display:inline-block;}
+.tci{font-size:26px;margin-bottom:6px;}
+.tct{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.tcd{font-size:11px;color:var(--muted);line-height:1.4;}
+.tcbtn{margin-top:9px;display:inline-block;background:#EBF3FB;color:var(--blue);font-size:11px;font-weight:700;padding:4px 11px;border-radius:7px;}
+
+/* ENROLL */
+.enroll{background:linear-gradient(135deg,var(--navy) 0%,#0d2249 100%);border-radius:16px;padding:28px 20px;text-align:center;color:#fff;margin:28px 0 0;}
+.enroll h3{font-size:19px;font-weight:800;margin-bottom:7px;}
+.enroll p{font-size:13px;color:#aac4e8;margin-bottom:18px;line-height:1.5;}
+.ebtn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy);font-size:14px;font-weight:800;padding:12px 26px;border-radius:50px;}
+
+/* FOOTER */
+footer{background:var(--navy);color:#8aaace;text-align:center;padding:24px 18px;font-size:12px;}
+footer strong{color:#fff;font-size:14px;}
+.frow{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:10px;}
+.frow a{color:#aac4e8;}
+.fcopy{margin-top:10px;font-size:11px;color:#5a7a9a;}
+
+@media(max-width:460px){
+  .statsbar{grid-template-columns:repeat(2,1fr);}
+  .sbar:nth-child(2){border-right:none;}
+  .tgrid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nb">Soft Skill <span>Zone</span></div>
+  <a href="https://www.youtube.com/@FinTaxLearning" target="_blank" class="nyt">▶ @FinTaxLearning</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hbadge">★ V3 SERIES — FY 2025-26 UPDATED ★</div>
+  <h1>
+    <em>AI Powered Tally Prime</em>
+    <small>Professional Mastery — Industry 4.0 Accounting System</small>
+  </h1>
+  <div class="htags">
+    <span class="htag">GST 2.0 — Sept 2025</span>
+    <span class="htag">New IT Act 2025</span>
+    <span class="htag">TDS Finance Act 2025</span>
+    <span class="htag">E-Invoice Automation</span>
+    <span class="htag">Payroll PF ESI PT</span>
+    <span class="htag">Job Costing</span>
+    <span class="htag">Real SEML Data</span>
+    <span class="htag">Hinglish Medium</span>
+  </div>
+  <a href="https://wa.me/916202856897?text=Hi%2C%20AI%20Powered%20Tally%20Prime%20V3%20course%20join%20karna%20hai" class="hcta">
+    💬 Admission Enquiry — WhatsApp karo
+  </a>
+</div>
+
+<!-- STATS BAR -->
+<div class="statsbar">
+  <div class="sbar"><div class="sn">23</div><div class="sl">CHAPTERS</div></div>
+  <div class="sbar"><div class="sn">5</div><div class="sl">MODULES</div></div>
+  <div class="sbar"><div class="sn">100%</div><div class="sl">PRACTICAL</div></div>
+  <div class="sbar"><div class="sn">FREE</div><div class="sl">TOOLS</div></div>
+</div>
+
+<main>
+
+<!-- MODULE 1: TALLY SETUP -->
+<div class="shdr">
+  <div class="sico" style="background:#EBF3FB;">⚙️</div>
+  <div class="stxt"><div class="st">Course Modules</div><div class="ss">Click karo — chapters expand honge</div></div>
+</div>
+
+<div class="mod open" id="m1">
+  <div class="mod-hd" onclick="tog('m1')">
+    <div class="mnum" style="background:var(--setup);">M1</div>
+    <div class="minfo">
+      <div class="mtitle">Tally Prime Foundation Setup</div>
+      <div class="mmeta">Chapter 1–7 · Basic se Financial Reports tak</div>
+    </div>
+    <div class="marr">⌄</div>
+  </div>
+  <div class="mod-body">
+    <div class="chr">
+      <span class="cbadge" style="background:#EBF3FB;color:var(--setup);">Ch 01</span>
+      <div class="ctxt"><div class="ctitle">Company Setup + Ledgers</div><div class="csub">SEML company create karo, Groups & Ledgers banao, Opening Balance dalo</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#EBF3FB;color:var(--setup);">Ch 02</span>
+      <div class="ctxt"><div class="ctitle">Basic Vouchers — Contra, Payment, Receipt, Journal</div><div class="csub">F4 F5 F6 F7 — har voucher ka use aur practical entries</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#EBF3FB;color:var(--setup);">Ch 03</span>
+      <div class="ctxt"><div class="ctitle">Purchase F9 + Sales F8 — Voucher Mode</div><div class="csub">Bina GST ke simple purchase aur sales entries (udhar bhi)</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#EBF3FB;color:var(--setup);">Ch 04</span>
+      <div class="ctxt"><div class="ctitle">Stock Items, Godowns, Units of Measure</div><div class="csub">Inventory setup — item groups, units, godown allocation</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#EBF3FB;color:var(--setup);">Ch 05</span>
+      <div class="ctxt"><div class="ctitle">Purchase & Sales Invoice Mode (with Stock)</div><div class="csub">Invoice Mode mein stock bhi track — quantity + value dono</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#EBF3FB;color:var(--setup);">Ch 06</span>
+      <div class="ctxt"><div class="ctitle">Financial Reports — Trial Balance, P&L, Balance Sheet</div><div class="csub">Tally mein F10 → Balance Sheet, P&L, Ratio Analysis</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#EBF3FB;color:var(--setup);">Ch 07</span>
+      <div class="ctxt"><div class="ctitle">Bank Reconciliation Statement</div><div class="csub">Tally BRS — bank statement vs books difference reconcile karo</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 2: GST -->
+<div class="mod" id="m2">
+  <div class="mod-hd" onclick="tog('m2')">
+    <div class="mnum" style="background:var(--gst);">M2</div>
+    <div class="minfo">
+      <div class="mtitle">GST 2.0 — Complete Series <span class="cupdated">UPDATED</span></div>
+      <div class="mmeta">Chapter 8–11 · New 4-Slab System · E-Invoice · GSTR Filing</div>
+    </div>
+    <div class="marr">⌄</div>
+  </div>
+  <div class="mod-body">
+    <div class="chr">
+      <span class="cbadge" style="background:#E3F9EC;color:var(--gst);">Ch 08</span>
+      <div class="ctxt"><div class="ctitle">GST Introduction</div><div class="csub">CGST / SGST / IGST concept, GST registration, tax ledger creation, SEML setup</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#E3F9EC;color:var(--gst);">Ch 09</span>
+      <div class="ctxt"><div class="ctitle">GST Multi-Rate & Input Tax Credit (ITC)</div><div class="csub">Steel 18% Coal 5% — multi-rate handling, ITC entry, reversal</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#E3F9EC;color:var(--gst);">Ch 10</span>
+      <div class="ctxt"><div class="ctitle">GST Returns — GSTR-1 & GSTR-3B Filing</div><div class="csub">Tally se JSON export, portal pe file karo, late fee penalty bachao</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#E3F9EC;color:var(--gst);">Ch 11</span>
+      <div class="ctxt"><div class="ctitle">E-way Bill & E-Invoice — Digital Compliance</div><div class="csub">Rs.50,000+ transport, IRN + QR Code, Tally se auto-generate</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 3: TDS -->
+<div class="mod" id="m3">
+  <div class="mod-hd" onclick="tog('m3')">
+    <div class="mnum" style="background:var(--tds);">M3</div>
+    <div class="minfo">
+      <div class="mtitle">TDS — Complete Series <span class="cupdated">UPDATED</span></div>
+      <div class="mmeta">Chapter 12–15 · Finance Act 2025 · New Section Codes</div>
+    </div>
+    <div class="marr">⌄</div>
+  </div>
+  <div class="mod-body">
+    <div class="chr">
+      <span class="cbadge" style="background:#FEF3CD;color:var(--tds);">Ch 12</span>
+      <div class="ctxt"><div class="ctitle">TDS Concepts & Introduction</div><div class="csub">TDS kya hai, kyun katata hai, threshold limits 2025 updated</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#FEF3CD;color:var(--tds);">Ch 13</span>
+      <div class="ctxt"><div class="ctitle">Tally Prime TDS Setup</div><div class="csub">TDS Nature of Payment, Tax Ledgers, Deductee setup F11</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#FEF3CD;color:var(--tds);">Ch 14</span>
+      <div class="ctxt"><div class="ctitle">TDS Voucher Entries — 194C, 194J, 194I, 192</div><div class="csub">Contractor 1011, Professional 1012, Rent 1031, Salary 1001 — live entries</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#FEF3CD;color:var(--tds);">Ch 15</span>
+      <div class="ctxt"><div class="ctitle">TDS Returns — 26Q, 24Q, Form 16A, TRACES</div><div class="csub">Return filing, Form 16A generate karo, 26AS reconciliation</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 4: PAYROLL -->
+<div class="mod" id="m4">
+  <div class="mod-hd" onclick="tog('m4')">
+    <div class="mnum" style="background:var(--pay);">M4</div>
+    <div class="minfo">
+      <div class="mtitle">Payroll — PF, ESI, Salary Processing</div>
+      <div class="mmeta">Chapter 16–19 · Payslip · ECR · ESI Return</div>
+    </div>
+    <div class="marr">⌄</div>
+  </div>
+  <div class="mod-body">
+    <div class="chr">
+      <span class="cbadge" style="background:#FCE4EC;color:var(--pay);">Ch 16</span>
+      <div class="ctxt"><div class="ctitle">Payroll Concepts — PF, ESI, Professional Tax</div><div class="csub">PF 12%, ESI 3.25%, PT slab — SEML ke 5 employees</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#FCE4EC;color:var(--pay);">Ch 17</span>
+      <div class="ctxt"><div class="ctitle">Tally Prime Payroll Setup</div><div class="csub">Pay heads, salary structure, employee groups, attendance setup</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#FCE4EC;color:var(--pay);">Ch 18</span>
+      <div class="ctxt"><div class="ctitle">Monthly Salary Processing + Payslip</div><div class="csub">Payroll voucher, PF ESI deduction, payslip print — one-click</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#FCE4EC;color:var(--pay);">Ch 19</span>
+      <div class="ctxt"><div class="ctitle">Payroll Compliance — PF ECR, ESI Return, PT</div><div class="csub">PF ECR file, ESI monthly return, Professional Tax challan</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 5: JOB COSTING -->
+<div class="mod" id="m5">
+  <div class="mod-hd" onclick="tog('m5')">
+    <div class="mnum" style="background:var(--job);">M5</div>
+    <div class="minfo">
+      <div class="mtitle">Job Costing — Cost Centre Analysis</div>
+      <div class="mmeta">Chapter 20–22 · 3 SEML Jobs · P&L per Job</div>
+    </div>
+    <div class="marr">⌄</div>
+  </div>
+  <div class="mod-body">
+    <div class="chr">
+      <span class="cbadge" style="background:#E0F7FA;color:var(--job);">Ch 20</span>
+      <div class="ctxt"><div class="ctitle">Job Costing Concepts</div><div class="csub">Direct Material + Labour + Overhead, WIP, 3 SEML jobs — complete job cost sheets</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#E0F7FA;color:var(--job);">Ch 21</span>
+      <div class="ctxt"><div class="ctitle">Tally Prime Job Costing Setup + 14 Voucher Entries</div><div class="csub">F11 Cost Centres enable, 3 Cost Centres, 14 live entries across 3 jobs</div></div>
+    </div>
+    <div class="chr">
+      <span class="cbadge" style="background:#E0F7FA;color:var(--job);">Ch 22</span>
+      <div class="ctxt"><div class="ctitle">Job Costing Reports + Profitability Analysis</div><div class="csub">Revenue Rs.8.3L, Profit Rs.3.58L (43%), Variance Analysis, WIP Schedule</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 6: TAX UPDATE -->
+<div class="mod" id="m6">
+  <div class="mod-hd" onclick="tog('m6')">
+    <div class="mnum" style="background:var(--tax);">M6</div>
+    <div class="minfo">
+      <div class="mtitle">Tax Update 2025-26 <span class="cnew">NEW</span></div>
+      <div class="mmeta">Chapter 23 · GST 2.0 · New Income Tax Act 2025</div>
+    </div>
+    <div class="marr">⌄</div>
+  </div>
+  <div class="mod-body">
+    <div class="chr">
+      <span class="cbadge" style="background:#FFEBEE;color:var(--tax);">Ch 23</span>
+      <div class="ctxt">
+        <div class="ctitle">GST 2.0 + New Income Tax Act 2025 — Complete Update</div>
+        <div class="csub">
+          56th GST Council — new 4-slab system (0/5/18/40%), 12% slab removed<br>
+          New TDS Sections 392/393/394 from April 2026, Form 130 replaces Form 16
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FREE TOOLS -->
+<div class="shdr">
+  <div class="sico" style="background:#E3F9EC;">🛠️</div>
+  <div class="stxt"><div class="st">Free Practice Tools</div><div class="ss">Bilkul free — koi login nahi chahiye</div></div>
+</div>
+
+<div class="tgrid">
+  <a href="https://sam205043.github.io/student-tools/gst_calculator.html" class="tc">
+    <div class="tcf" style="background:#E3F9EC;color:var(--gst);">FREE</div>
+    <div class="tci">🧮</div>
+    <div class="tct">GST Calculator</div>
+    <div class="tcd">Amount daalo → CGST/SGST/IGST turant. Reverse GST bhi. GST 2.0 rates (0/5/18/40)</div>
+    <div class="tcbtn">Open Tool →</div>
+  </a>
+  <a href="https://sam205043.github.io/student-tools/hsn_rate_finder.html" class="tc">
+    <div class="tcf" style="background:#E3F9EC;color:var(--gst);">FREE</div>
+    <div class="tci">🔍</div>
+    <div class="tct">HSN / Rate Finder</div>
+    <div class="tcd">Item name ya HSN number se search karo → GST rate turant</div>
+    <div class="tcbtn">Open Tool →</div>
+  </a>
+  <a href="https://sam205043.github.io/student-tools/gst_tally_quiz.html" class="tc">
+    <div class="tcf" style="background:#E3F9EC;color:var(--gst);">FREE</div>
+    <div class="tci">📝</div>
+    <div class="tct">GST + Tally Quiz</div>
+    <div class="tcd">MCQ self-test — instant score, har baar random questions</div>
+    <div class="tcbtn">Open Tool →</div>
+  </a>
+  <div class="tc" style="opacity:.65;">
+    <div class="tcf" style="background:#fdecea;color:var(--tax);">COMING SOON</div>
+    <div class="tci">💰</div>
+    <div class="tct">TDS Calculator</div>
+    <div class="tcd">194C, 194J, 192 — amount daalo, TDS automatically calculate</div>
+    <div class="tcbtn" style="background:#f0f0f0;color:#aaa;">Coming Soon</div>
+  </div>
+</div>
+
+<!-- ENROLL CTA -->
+<div class="enroll">
+  <h3>🎯 Poora Course Join Karo</h3>
+  <p>Job-Oriented · 100% Practical · Real SEML Company Data<br>Certificate + Industry-Ready Skills — Classroom ya Ghar se</p>
+  <a href="https://wa.me/916202856897?text=Hi%2C%20AI%20Powered%20Tally%20Prime%20V3%20course%20join%20karna%20hai" class="ebtn">
+    💬 Admission Enquiry — WhatsApp karo
+  </a>
+</div>
+
+</main>
+
+<footer>
+  <strong>Soft Skill Zone Institute</strong>
+  <div class="frow">
+    <a href="tel:6202856897">📞 6202856897</a>
+    <span>📍 Near Gym Town, Pakri, Ara</span>
+    <a href="https://www.youtube.com/@FinTaxLearning" target="_blank">▶ @FinTaxLearning</a>
+  </div>
+  <div class="fcopy">© Soft Skill Zone Institute • Author: Pankaj Pandey • AI Powered Tally Prime V3 Series FY 2025-26</div>
+</footer>
+
+<script>
+function tog(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('open');
+}
+</script>
+</body>
+</html>
