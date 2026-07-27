@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Payroll Calculator — Soft Skill Zone</title>
+<style>
+:root{--navy:#1F3864;--blue:#2E74B5;--gold:#F5A623;--green:#1A7C40;--red:#C0392B;--bg:#F0F4FA;--white:#fff;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:#1a1a2e;font-size:15px;}
+nav{background:var(--navy);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
+.nb{color:#fff;font-size:15px;font-weight:800;}.nb span{color:var(--gold);}
+.back{color:var(--gold);font-size:13px;font-weight:700;}
+.hero{background:var(--navy);color:#fff;padding:24px 16px;text-align:center;}
+.hero h1{font-size:22px;font-weight:900;margin-bottom:4px;}
+.hero p{font-size:12px;color:#aac4e8;}
+main{max-width:520px;margin:0 auto;padding:16px;}
+.card{background:#fff;border-radius:12px;border:1.5px solid #d8e8f5;padding:18px;margin-bottom:14px;}
+.card h3{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px;}
+label{display:block;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+input,select{width:100%;padding:10px 12px;border:1.5px solid #cde;border-radius:8px;font-size:14px;margin-bottom:11px;}
+input:focus,select:focus{outline:none;border-color:var(--blue);}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f5fb;}
+.toggle-row:last-child{border:none;}
+.toggle-label{font-size:13px;font-weight:600;color:#333;}
+.toggle-sub{font-size:11px;color:#888;}
+.toggle{width:40px;height:22px;border-radius:11px;background:#ddd;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;}
+.toggle.on{background:var(--green);}
+.toggle::after{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:2px;left:2px;transition:left .2s;}
+.toggle.on::after{left:20px;}
+.calc-btn{width:100%;background:var(--navy);color:#fff;border:none;padding:13px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;}
+.result{display:none;}
+.res-title{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:1px;margin:14px 0 8px;padding-bottom:4px;border-bottom:2px solid var(--gold);}
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:7px 12px;border-radius:7px;margin-bottom:3px;}
+.rrow.earn{background:#f0fdf4;}.rrow.ded{background:#fff5f5;}.rrow.net{background:var(--navy);color:#fff;font-size:15px;font-weight:800;border-radius:10px;padding:12px 14px;margin-top:8px;}
+.rrow.emp{background:#fffbea;}
+.rl{font-size:12px;color:#555;}.rv{font-size:13px;font-weight:700;}
+.rrow.net .rl{color:#aac4e8;font-size:13px;}.rrow.net .rv{color:var(--gold);font-size:16px;}
+.tally-box{background:#EBF3FB;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:12px 14px;margin-top:14px;}
+.tally-box h4{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.tally-box p{font-size:11px;color:#444;line-height:1.6;}
+footer{background:var(--navy);color:#8aaace;text-align:center;padding:20px;font-size:12px;margin-top:20px;}
+</style></head><body>
+<nav><div class="nb">Soft Skill <span>Zone</span></div><a href="../index.html" class="back">← Back</a></nav>
+<div class="hero">
+  <h1>👨‍💼 Payroll Calculator</h1>
+  <p>PF · ESI · Professional Tax · Net Salary · CTC — Tally Prime Payroll</p>
+</div>
+<main>
+<div class="card">
+  <h3>Employee Salary Details</h3>
+  <label>Employee Name (optional)</label>
+  <input type="text" id="emp_name" placeholder="e.g. Rahul Kumar">
+  <label>Basic Salary (₹/month)</label>
+  <input type="number" id="basic" placeholder="e.g. 20000" oninput="liveCalc()">
+  <label>HRA (₹/month) — 0 if not applicable</label>
+  <input type="number" id="hra" placeholder="e.g. 8000" value="0" oninput="liveCalc()">
+  <label>Special Allowance (₹/month)</label>
+  <input type="number" id="spl" placeholder="e.g. 5000" value="0" oninput="liveCalc()">
+  <label>State / Professional Tax State</label>
+  <select id="pt_state" onchange="liveCalc()">
+    <option value="bihar">Bihar (PT not applicable)</option>
+    <option value="maharashtra">Maharashtra</option>
+    <option value="karnataka">Karnataka</option>
+    <option value="tamilnadu">Tamil Nadu</option>
+    <option value="other">Other State</option>
+  </select>
+</div>
+<div class="card">
+  <h3>Deduction Options</h3>
+  <div class="toggle-row">
+    <div><div class="toggle-label">PF (Provident Fund)</div><div class="toggle-sub">Employee 12% + Employer 12% of Basic</div></div>
+    <div class="toggle on" id="t_pf" onclick="tog('pf')"></div>
+  </div>
+  <div class="toggle-row">
+    <div><div class="toggle-label">ESI (Employee State Insurance)</div><div class="toggle-sub">Employee 0.75% + Employer 3.25% (if Gross ≤ ₹21,000)</div></div>
+    <div class="toggle on" id="t_esi" onclick="tog('esi')"></div>
+  </div>
+  <div class="toggle-row">
+    <div><div class="toggle-label">Professional Tax</div><div class="toggle-sub">State-wise monthly deduction</div></div>
+    <div class="toggle on" id="t_pt" onclick="tog('pt')"></div>
+  </div>
+  <button class="calc-btn" onclick="liveCalc()">Calculate Salary →</button>
+</div>
+
+<div class="result" id="result_box">
+  <div class="card">
+    <div id="emp_heading" style="font-size:15px;font-weight:800;color:var(--navy);margin-bottom:14px;"></div>
+    <div class="res-title">EARNINGS</div>
+    <div class="rrow earn"><span class="rl">Basic Salary</span><span class="rv" id="r_basic"></span></div>
+    <div class="rrow earn" id="row_hra"><span class="rl">HRA</span><span class="rv" id="r_hra"></span></div>
+    <div class="rrow earn" id="row_spl"><span class="rl">Special Allowance</span><span class="rv" id="r_spl"></span></div>
+    <div class="rrow earn" style="font-weight:800;"><span class="rl" style="font-weight:700;color:var(--navy);">Gross Salary</span><span class="rv" style="color:var(--green);" id="r_gross"></span></div>
+    <div class="res-title">DEDUCTIONS (Employee)</div>
+    <div class="rrow ded" id="row_epf"><span class="rl">PF — Employee (12% of Basic)</span><span class="rv" style="color:var(--red);" id="r_epf"></span></div>
+    <div class="rrow ded" id="row_eesi"><span class="rl">ESI — Employee (0.75% of Gross)</span><span class="rv" style="color:var(--red);" id="r_eesi"></span></div>
+    <div class="rrow ded" id="row_pt"><span class="rl">Professional Tax</span><span class="rv" style="color:var(--red);" id="r_pt"></span></div>
+    <div class="rrow net"><span class="rl">NET TAKE-HOME SALARY</span><span class="rv" id="r_net"></span></div>
+    <div class="res-title">EMPLOYER CONTRIBUTION (CTC)</div>
+    <div class="rrow emp" id="row_mpf"><span class="rl">PF — Employer (12% of Basic)</span><span class="rv" id="r_mpf"></span></div>
+    <div class="rrow emp" id="row_mesi"><span class="rl">ESI — Employer (3.25% of Gross)</span><span class="rv" id="r_mesi"></span></div>
+    <div class="rrow emp" style="font-weight:800;"><span class="rl" style="font-weight:700;">Total CTC (Cost to Company)</span><span class="rv" style="color:var(--navy);" id="r_ctc"></span></div>
+    <div class="tally-box" style="margin-top:16px;">
+      <h4>📋 Tally Prime Entry (Monthly)</h4>
+      <p id="tally_entry"></p>
+    </div>
+  </div>
+</div>
+</main>
+<footer><strong style="color:#fff;">Soft Skill Zone Institute</strong><br>📞 6202856897 | Near Gym Town, Pakri, Ara | @FinTaxLearning</footer>
+<script>
+const state={pf:true,esi:true,pt:true};
+function tog(k){state[k]=!state[k];document.getElementById('t_'+k).classList.toggle('on',state[k]);liveCalc();}
+function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
+function getPT(gross,st){
+  if(!state.pt)return 0;
+  if(st==='bihar')return 0;
+  if(st==='maharashtra'){return gross<7500?0:gross<10000?175:200;}
+  if(st==='karnataka'){return gross<15000?0:gross<25000?150:gross<35000?200:gross<50000?300:500;}
+  if(st==='tamilnadu'){return gross<3500?0:gross<5001?16:gross<7501?25:gross<10001?33:gross<12501?41:gross<20001?58:gross<30001?108:208;}
+  return 0;
+}
+function liveCalc(){
+  const basic=parseFloat(document.getElementById('basic').value)||0;
+  const hra=parseFloat(document.getElementById('hra').value)||0;
+  const spl=parseFloat(document.getElementById('spl').value)||0;
+  const gross=basic+hra+spl;
+  const epf=state.pf?basic*0.12:0;
+  const eesi=(state.esi&&gross<=21000)?gross*0.0075:0;
+  const pt=getPT(gross,document.getElementById('pt_state').value);
+  const mpf=state.pf?basic*0.12:0;
+  const mesi=(state.esi&&gross<=21000)?gross*0.0325:0;
+  const net=gross-epf-eesi-pt;
+  const ctc=gross+mpf+mesi;
+  const name=document.getElementById('emp_name').value||'Employee';
+  document.getElementById('emp_heading').textContent='💼 '+name+' — Monthly Salary Sheet';
+  document.getElementById('r_basic').textContent=fmt(basic);
+  document.getElementById('r_hra').textContent=fmt(hra);
+  document.getElementById('r_spl').textContent=fmt(spl);
+  document.getElementById('r_gross').textContent=fmt(gross);
+  document.getElementById('r_epf').textContent=state.pf?'- '+fmt(epf):'Not Applied';
+  document.getElementById('r_eesi').textContent=(state.esi&&gross<=21000)?'- '+fmt(eesi):(state.esi?'Not Applicable (Gross > ₹21,000)':'Not Applied');
+  document.getElementById('r_pt').textContent=pt>0?'- '+fmt(pt):(state.pt?'Not Applicable':'Not Applied');
+  document.getElementById('r_net').textContent=fmt(net);
+  document.getElementById('r_mpf').textContent=state.pf?fmt(mpf):'Not Applied';
+  document.getElementById('r_mesi').textContent=(state.esi&&gross<=21000)?fmt(mesi):'Not Applicable';
+  document.getElementById('r_ctc').textContent=fmt(ctc);
+  document.getElementById('tally_entry').innerHTML=
+    `Dr Salary A/c ${fmt(basic)} | Dr HRA ${fmt(hra)} | Dr SPL ${fmt(spl)}<br>`+
+    (state.pf?`Dr PF Employer ${fmt(mpf)}<br>`:'')+(state.esi&&gross<=21000?`Dr ESI Employer ${fmt(mesi)}<br>`:'')+
+    `Cr Net Salary Payable ${fmt(net)}<br>`+
+    (state.pf?`Cr PF Payable ${fmt(epf+mpf)}<br>`:'')+
+    (state.esi&&gross<=21000?`Cr ESI Payable ${fmt(eesi+mesi)}<br>`:'')+
+    (pt>0?`Cr PT Payable ${fmt(pt)}<br>`:'');
+  document.getElementById('result_box').style.display='block';
+}
+</script>
+</body></html>

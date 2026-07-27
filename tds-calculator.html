@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TDS Calculator — Soft Skill Zone</title>
+<style>
+:root{--navy:#1F3864;--blue:#2E74B5;--gold:#F5A623;--green:#1A7C40;--red:#C0392B;--bg:#F0F4FA;--white:#fff;--text:#1a1a2e;--muted:#666;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);font-size:15px;}
+nav{background:var(--navy);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
+.nb{color:#fff;font-size:15px;font-weight:800;}.nb span{color:var(--gold);}
+.back{color:var(--gold);font-size:13px;font-weight:700;}
+.hero{background:var(--navy);color:#fff;padding:24px 16px;text-align:center;}
+.hero h1{font-size:22px;font-weight:900;margin-bottom:4px;}
+.hero p{font-size:13px;color:#aac4e8;}
+.tabs{display:flex;background:#fff;border-bottom:2px solid #e0eaf5;overflow-x:auto;}
+.tab{flex:1;min-width:70px;padding:12px 6px;text-align:center;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;}
+.tab.active{color:var(--navy);border-bottom-color:var(--gold);}
+.panel{display:none;padding:16px;max-width:500px;margin:0 auto;}
+.panel.active{display:block;}
+.card{background:#fff;border-radius:12px;border:1.5px solid #d8e8f5;padding:18px;margin-bottom:14px;}
+.card h3{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.card p{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5;}
+label{display:block;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:5px;}
+input,select{width:100%;padding:10px 12px;border:1.5px solid #cde;border-radius:8px;font-size:14px;margin-bottom:12px;background:#fff;}
+input:focus,select:focus{outline:none;border-color:var(--blue);}
+.calc-btn{width:100%;background:var(--navy);color:#fff;border:none;padding:13px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px;}
+.result{background:linear-gradient(135deg,var(--navy),#0d2249);border-radius:12px;padding:18px;color:#fff;margin-top:14px;display:none;}
+.result h4{font-size:13px;color:var(--gold);font-weight:700;margin-bottom:12px;letter-spacing:1px;}
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1);}
+.rrow:last-child{border:none;}
+.rl{font-size:12px;color:#aac4e8;}
+.rv{font-size:14px;font-weight:700;color:#fff;}
+.rv.gold{color:var(--gold);}
+.rv.green{color:#5edb87;}
+.rv.red{color:#ff7c7c;}
+.info-box{background:#EBF3FB;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:12px 14px;margin-bottom:14px;}
+.info-box h4{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.info-box p{font-size:11px;color:#444;line-height:1.6;}
+.badge{display:inline-block;padding:3px 9px;border-radius:10px;font-size:11px;font-weight:700;margin-right:4px;}
+footer{background:var(--navy);color:#8aaace;text-align:center;padding:20px;font-size:12px;margin-top:20px;}
+</style></head><body>
+<nav><div class="nb">Soft Skill <span>Zone</span></div><a href="../index.html" class="back">← Back</a></nav>
+<div class="hero">
+  <h1>💰 TDS Calculator</h1>
+  <p>194C · 194J · 194I · 192 — Finance Act 2025 Updated Rates</p>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('c194c')">194C<br><small>Contractor</small></div>
+  <div class="tab" onclick="showTab('c194j')">194J<br><small>Professional</small></div>
+  <div class="tab" onclick="showTab('c194i')">194I<br><small>Rent</small></div>
+  <div class="tab" onclick="showTab('c192')">192<br><small>Salary</small></div>
+  <div class="tab" onclick="showTab('ccheck')">Rate<br><small>Finder</small></div>
+</div>
+
+<!-- 194C -->
+<div class="panel active" id="c194c">
+  <div class="info-box">
+    <h4>Section 194C — TDS on Contractor Payment</h4>
+    <p>Rate: <b>1%</b> (Individual/HUF) | <b>2%</b> (Company/Firm/AOP)<br>
+    Threshold: Single payment &gt; ₹30,000 OR Annual aggregate &gt; ₹1,00,000<br>
+    Payment Code (New): <b>1011</b> | Due: Next month 7th<br>
+    New Section (IT Act 2025): <b>Section 393</b></p>
+  </div>
+  <div class="card">
+    <h3>Calculate TDS — 194C</h3>
+    <p>Contractor ko payment karo — TDS kitna katega?</p>
+    <label>Payment Amount (₹)</label>
+    <input type="number" id="c_amt" placeholder="e.g. 85000">
+    <label>Deductee Type</label>
+    <select id="c_type">
+      <option value="1">Individual / HUF (1%)</option>
+      <option value="2">Company / Firm / AOP (2%)</option>
+    </select>
+    <label>Annual Aggregate so far (₹) — pehle kitna de chuke ho</label>
+    <input type="number" id="c_agg" placeholder="e.g. 0" value="0">
+    <button class="calc-btn" onclick="calc194c()">Calculate TDS →</button>
+    <div class="result" id="r194c">
+      <h4>📊 TDS CALCULATION — 194C</h4>
+      <div class="rrow"><span class="rl">Payment Amount</span><span class="rv" id="r_camt"></span></div>
+      <div class="rrow"><span class="rl">TDS Rate</span><span class="rv gold" id="r_crate"></span></div>
+      <div class="rrow"><span class="rl">TDS Amount</span><span class="rv red" id="r_ctds"></span></div>
+      <div class="rrow"><span class="rl">Net Payable to Party</span><span class="rv green" id="r_cnet"></span></div>
+      <div class="rrow"><span class="rl">Challan Code</span><span class="rv gold">1011</span></div>
+      <div class="rrow"><span class="rl">TDS Due Date</span><span class="rv" id="r_cdue"></span></div>
+      <div class="rrow"><span class="rl">Status</span><span class="rv gold" id="r_cstatus"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 194J -->
+<div class="panel" id="c194j">
+  <div class="info-box">
+    <h4>Section 194J — TDS on Professional/Technical Services</h4>
+    <p>Rate: <b>10%</b> (Professional) | <b>2%</b> (Technical/Call Centre)<br>
+    Threshold: &gt; ₹30,000 per year<br>
+    Payment Code (New): <b>1012</b> | Due: Next month 7th<br>
+    New Section (IT Act 2025): <b>Section 394</b></p>
+  </div>
+  <div class="card">
+    <h3>Calculate TDS — 194J</h3>
+    <p>CA, Doctor, Consultant, Lawyer ko fees — TDS kitna?</p>
+    <label>Professional Fees Amount (₹)</label>
+    <input type="number" id="j_amt" placeholder="e.g. 50000">
+    <label>Service Type</label>
+    <select id="j_type">
+      <option value="10">Professional Services — CA, Doctor, Lawyer (10%)</option>
+      <option value="2">Technical/Call Centre Services (2%)</option>
+    </select>
+    <button class="calc-btn" onclick="calc194j()">Calculate TDS →</button>
+    <div class="result" id="r194j">
+      <h4>📊 TDS CALCULATION — 194J</h4>
+      <div class="rrow"><span class="rl">Fees Amount</span><span class="rv" id="r_jamt"></span></div>
+      <div class="rrow"><span class="rl">TDS Rate</span><span class="rv gold" id="r_jrate"></span></div>
+      <div class="rrow"><span class="rl">TDS Amount</span><span class="rv red" id="r_jtds"></span></div>
+      <div class="rrow"><span class="rl">Net to Party</span><span class="rv green" id="r_jnet"></span></div>
+      <div class="rrow"><span class="rl">Challan Code</span><span class="rv gold">1012</span></div>
+      <div class="rrow"><span class="rl">Due Date</span><span class="rv" id="r_jdue"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 194I -->
+<div class="panel" id="c194i">
+  <div class="info-box">
+    <h4>Section 194I — TDS on Rent</h4>
+    <p>Rate: <b>10%</b> (Land/Building/Furniture) | <b>2%</b> (Plant/Machinery/Equipment)<br>
+    Threshold: &gt; ₹2,40,000 per year (₹20,000/month)<br>
+    Payment Code (New): <b>1031</b> | Due: Next month 7th</p>
+  </div>
+  <div class="card">
+    <h3>Calculate TDS — 194I</h3>
+    <p>Office/factory rent, equipment rent — TDS check karo</p>
+    <label>Monthly Rent Amount (₹)</label>
+    <input type="number" id="i_amt" placeholder="e.g. 25000">
+    <label>Rent Type</label>
+    <select id="i_type">
+      <option value="10">Land / Building / Furniture (10%)</option>
+      <option value="2">Plant / Machinery / Equipment (2%)</option>
+    </select>
+    <button class="calc-btn" onclick="calc194i()">Calculate TDS →</button>
+    <div class="result" id="r194i">
+      <h4>📊 TDS CALCULATION — 194I</h4>
+      <div class="rrow"><span class="rl">Monthly Rent</span><span class="rv" id="r_iamt"></span></div>
+      <div class="rrow"><span class="rl">Annual Rent</span><span class="rv" id="r_iann"></span></div>
+      <div class="rrow"><span class="rl">TDS Rate</span><span class="rv gold" id="r_irate"></span></div>
+      <div class="rrow"><span class="rl">Monthly TDS</span><span class="rv red" id="r_itmds"></span></div>
+      <div class="rrow"><span class="rl">Net Monthly Rent</span><span class="rv green" id="r_inet"></span></div>
+      <div class="rrow"><span class="rl">Annual TDS Total</span><span class="rv gold" id="r_iatds"></span></div>
+      <div class="rrow"><span class="rl">Challan Code</span><span class="rv gold">1031</span></div>
+      <div class="rrow"><span class="rl">Applicable?</span><span class="rv" id="r_iapp"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 192 -->
+<div class="panel" id="c192">
+  <div class="info-box">
+    <h4>Section 192 — TDS on Salary</h4>
+    <p>Rate: As per income tax slab (New Regime / Old Regime)<br>
+    Threshold: Taxable income &gt; ₹4,00,000 (New Regime 2025-26)<br>
+    Payment Code (New): <b>1001</b> | Due: Next month 7th<br>
+    New Section (IT Act 2025): <b>Section 392</b></p>
+  </div>
+  <div class="card">
+    <h3>Salary TDS Estimator — 192</h3>
+    <p>Employee ki annual salary se TDS estimate karo (New Tax Regime 2025-26)</p>
+    <label>Annual Gross Salary (₹)</label>
+    <input type="number" id="s_salary" placeholder="e.g. 600000">
+    <label>Standard Deduction</label>
+    <select id="s_sd"><option value="75000">₹75,000 (New Regime — FY 2025-26)</option></select>
+    <label>Other Deductions (HRA exempted, etc.) (₹)</label>
+    <input type="number" id="s_ded" placeholder="0" value="0">
+    <button class="calc-btn" onclick="calc192()">Estimate Annual TDS →</button>
+    <div class="result" id="r192">
+      <h4>📊 SALARY TDS — 192 (NEW REGIME)</h4>
+      <div class="rrow"><span class="rl">Gross Salary</span><span class="rv" id="r_sgross"></span></div>
+      <div class="rrow"><span class="rl">Standard Deduction</span><span class="rv">- ₹75,000</span></div>
+      <div class="rrow"><span class="rl">Net Taxable Income</span><span class="rv" id="r_stax"></span></div>
+      <div class="rrow"><span class="rl">Tax Slab</span><span class="rv gold" id="r_sslab"></span></div>
+      <div class="rrow"><span class="rl">Annual Tax (TDS)</span><span class="rv red" id="r_satax"></span></div>
+      <div class="rrow"><span class="rl">Monthly TDS</span><span class="rv red" id="r_smtds"></span></div>
+      <div class="rrow"><span class="rl">Challan Code</span><span class="rv gold">1001</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- RATE FINDER -->
+<div class="panel" id="ccheck">
+  <div class="card">
+    <h3>🔍 TDS Section Quick Reference</h3>
+    <p>Sabhi important TDS sections — Finance Act 2025 updated</p>
+  </div>
+  <div style="background:#fff;border-radius:12px;border:1.5px solid #d8e8f5;overflow:hidden;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <tr style="background:var(--navy);color:#fff;">
+        <th style="padding:10px 8px;text-align:left;">Section</th>
+        <th style="padding:10px 8px;">Rate</th>
+        <th style="padding:10px 8px;">Threshold</th>
+        <th style="padding:10px 8px;">Code</th>
+      </tr>
+      <tr style="background:#f8fbff;"><td style="padding:9px 8px;font-weight:700;">192 — Salary</td><td style="padding:9px 8px;text-align:center;">Slab</td><td style="padding:9px 8px;text-align:center;">₹4L</td><td style="padding:9px 8px;text-align:center;font-weight:700;color:var(--gold);">1001</td></tr>
+      <tr><td style="padding:9px 8px;font-weight:700;">194C — Contractor</td><td style="padding:9px 8px;text-align:center;">1%/2%</td><td style="padding:9px 8px;text-align:center;">₹1L</td><td style="padding:9px 8px;text-align:center;font-weight:700;color:var(--gold);">1011</td></tr>
+      <tr style="background:#f8fbff;"><td style="padding:9px 8px;font-weight:700;">194J — Professional</td><td style="padding:9px 8px;text-align:center;">10%/2%</td><td style="padding:9px 8px;text-align:center;">₹30K</td><td style="padding:9px 8px;text-align:center;font-weight:700;color:var(--gold);">1012</td></tr>
+      <tr><td style="padding:9px 8px;font-weight:700;">194I — Rent</td><td style="padding:9px 8px;text-align:center;">10%/2%</td><td style="padding:9px 8px;text-align:center;">₹2.4L</td><td style="padding:9px 8px;text-align:center;font-weight:700;color:var(--gold);">1031</td></tr>
+      <tr style="background:#f8fbff;"><td style="padding:9px 8px;font-weight:700;">194A — Interest</td><td style="padding:9px 8px;text-align:center;">10%</td><td style="padding:9px 8px;text-align:center;">₹40K</td><td style="padding:9px 8px;text-align:center;font-weight:700;color:var(--gold);">1021</td></tr>
+      <tr><td style="padding:9px 8px;font-weight:700;">194H — Commission</td><td style="padding:9px 8px;text-align:center;">5%</td><td style="padding:9px 8px;text-align:center;">₹15K</td><td style="padding:9px 8px;text-align:center;font-weight:700;color:var(--gold);">1041</td></tr>
+    </table>
+  </div>
+</div>
+
+<footer><strong style="color:#fff;">Soft Skill Zone Institute</strong><br>📞 6202856897 | Near Gym Town, Pakri, Ara | @FinTaxLearning</footer>
+
+<script>
+function fmt(n){return '₹'+Number(n).toLocaleString('en-IN');}
+function nextMonth7(){const d=new Date();d.setMonth(d.getMonth()+1);d.setDate(7);return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});}
+function showTab(id){
+  document.querySelectorAll('.tab').forEach((t,i)=>{t.classList.remove('active');});
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const tabs=document.querySelectorAll('.tab');
+  const ids=['c194c','c194j','c194i','c192','ccheck'];
+  tabs[ids.indexOf(id)].classList.add('active');
+}
+function calc194c(){
+  const amt=parseFloat(document.getElementById('c_amt').value)||0;
+  const rate=parseFloat(document.getElementById('c_type').value);
+  const agg=parseFloat(document.getElementById('c_agg').value)||0;
+  const tds=amt*rate/100;
+  const net=amt-tds;
+  const applicable=(amt>30000)||(agg+amt>100000);
+  document.getElementById('r_camt').textContent=fmt(amt);
+  document.getElementById('r_crate').textContent=rate+'%';
+  document.getElementById('r_ctds').textContent=applicable?fmt(tds):'₹0 (Threshold nahi hua)';
+  document.getElementById('r_cnet').textContent=applicable?fmt(net):fmt(amt);
+  document.getElementById('r_cdue').textContent=nextMonth7();
+  document.getElementById('r_cstatus').textContent=applicable?'✓ TDS Applicable':'✗ Below Threshold';
+  document.getElementById('r194c').style.display='block';
+}
+function calc194j(){
+  const amt=parseFloat(document.getElementById('j_amt').value)||0;
+  const rate=parseFloat(document.getElementById('j_type').value);
+  const tds=amt>30000?amt*rate/100:0;
+  const net=amt-tds;
+  document.getElementById('r_jamt').textContent=fmt(amt);
+  document.getElementById('r_jrate').textContent=rate+'%';
+  document.getElementById('r_jtds').textContent=fmt(tds);
+  document.getElementById('r_jnet').textContent=fmt(net);
+  document.getElementById('r_jdue').textContent=nextMonth7();
+  document.getElementById('r194j').style.display='block';
+}
+function calc194i(){
+  const m=parseFloat(document.getElementById('i_amt').value)||0;
+  const rate=parseFloat(document.getElementById('i_type').value);
+  const ann=m*12;
+  const app=ann>240000;
+  const mtds=app?m*rate/100:0;
+  const mnet=m-mtds;
+  document.getElementById('r_iamt').textContent=fmt(m);
+  document.getElementById('r_iann').textContent=fmt(ann);
+  document.getElementById('r_irate').textContent=rate+'%';
+  document.getElementById('r_itmds').textContent=fmt(mtds);
+  document.getElementById('r_inet').textContent=fmt(mnet);
+  document.getElementById('r_iatds').textContent=fmt(mtds*12);
+  document.getElementById('r_iapp').textContent=app?'✓ TDS Applicable (Annual > ₹2,40,000)':'✗ TDS Nahi (Annual ≤ ₹2,40,000)';
+  document.getElementById('r194i').style.display='block';
+}
+function calc192(){
+  const gross=parseFloat(document.getElementById('s_salary').value)||0;
+  const ded=parseFloat(document.getElementById('s_ded').value)||0;
+  const taxable=Math.max(0,gross-75000-ded);
+  let tax=0,slab='';
+  if(taxable<=400000){tax=0;slab='₹0–4L = 0%';}
+  else if(taxable<=800000){tax=(taxable-400000)*0.05;slab='₹4L–8L = 5%';}
+  else if(taxable<=1200000){tax=20000+(taxable-800000)*0.10;slab='₹8L–12L = 10%';}
+  else if(taxable<=1600000){tax=60000+(taxable-1200000)*0.15;slab='₹12L–16L = 15%';}
+  else if(taxable<=2000000){tax=120000+(taxable-1600000)*0.20;slab='₹16L–20L = 20%';}
+  else if(taxable<=2400000){tax=200000+(taxable-2000000)*0.25;slab='₹20L–24L = 25%';}
+  else{tax=300000+(taxable-2400000)*0.30;slab='Above ₹24L = 30%';}
+  document.getElementById('r_sgross').textContent=fmt(gross);
+  document.getElementById('r_stax').textContent=fmt(taxable);
+  document.getElementById('r_sslab').textContent=slab;
+  document.getElementById('r_satax').textContent=fmt(Math.round(tax));
+  document.getElementById('r_smtds').textContent=fmt(Math.round(tax/12));
+  document.getElementById('r192').style.display='block';
+}
+</script>
+</body></html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tally Prime Shortcuts — Soft Skill Zone</title>
+<style>
+:root{--navy:#1F3864;--blue:#2E74B5;--gold:#F5A623;--bg:#F0F4FA;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:#1a1a2e;font-size:14px;}
+nav{background:var(--navy);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
+.nb{color:#fff;font-size:15px;font-weight:800;}.nb span{color:var(--gold);}
+.back{color:var(--gold);font-size:13px;font-weight:700;}
+.hero{background:var(--navy);color:#fff;padding:22px 16px;text-align:center;}
+.hero h1{font-size:21px;font-weight:900;margin-bottom:4px;}
+.hero p{font-size:12px;color:#aac4e8;}
+.search-box{background:#fff;padding:12px 16px;border-bottom:1px solid #e0eaf5;}
+.search-box input{width:100%;padding:10px 14px;border:1.5px solid #cde;border-radius:24px;font-size:14px;outline:none;}
+main{max-width:600px;margin:0 auto;padding:12px 14px 30px;}
+.cat-head{font-size:11px;font-weight:800;color:var(--blue);letter-spacing:2px;text-transform:uppercase;padding:14px 0 7px;border-bottom:2px solid var(--gold);margin-bottom:8px;}
+.sc{display:flex;align-items:center;gap:10px;background:#fff;border-radius:9px;border:1px solid #e5eef8;padding:10px 12px;margin-bottom:5px;}
+.sc.hidden{display:none;}
+.key{background:var(--navy);color:#fff;font-size:11px;font-weight:800;padding:4px 8px;border-radius:5px;white-space:nowrap;min-width:60px;text-align:center;letter-spacing:.5px;}
+.key.gold{background:var(--gold);color:var(--navy);}
+.key.blue{background:var(--blue);}
+.kdesc{flex:1;}
+.kdesc strong{display:block;font-size:13px;color:#1a1a2e;font-weight:700;}
+.kdesc span{font-size:11px;color:#666;}
+footer{background:var(--navy);color:#8aaace;text-align:center;padding:18px;font-size:12px;margin-top:10px;}
+</style></head><body>
+<nav><div class="nb">Soft Skill <span>Zone</span></div><a href="../index.html" class="back">← Back</a></nav>
+<div class="hero"><h1>⌨️ Tally Prime Shortcuts</h1><p>Sabhi important keyboard shortcuts — search karo</p></div>
+<div class="search-box"><input type="text" placeholder="🔍 Search shortcut ya kaam..." id="srch" oninput="search()"></div>
+<main>
+<div class="cat-head">Voucher Entry — F Keys</div>
+<div class="sc"><span class="key gold">F4</span><div class="kdesc"><strong>Contra Voucher</strong><span>Bank ↔ Cash transfer, Bank to Bank</span></div></div>
+<div class="sc"><span class="key gold">F5</span><div class="kdesc"><strong>Payment Voucher</strong><span>Cash ya Bank se payment dena — rent, salary, supplier</span></div></div>
+<div class="sc"><span class="key gold">F6</span><div class="kdesc"><strong>Receipt Voucher</strong><span>Cash ya Bank mein receive karna — customer, capital</span></div></div>
+<div class="sc"><span class="key gold">F7</span><div class="kdesc"><strong>Journal Voucher</strong><span>Depreciation, TDS, adjustments, non-cash entries</span></div></div>
+<div class="sc"><span class="key gold">F8</span><div class="kdesc"><strong>Sales Voucher / Invoice</strong><span>Sales invoice banana — customer ko bill karo</span></div></div>
+<div class="sc"><span class="key gold">F9</span><div class="kdesc"><strong>Purchase Voucher / Invoice</strong><span>Purchase bill record karo — supplier ka bill</span></div></div>
+<div class="sc"><span class="key">Alt+F5</span><div class="kdesc"><strong>Payment Order</strong><span>Payment order create karo (advance booking)</span></div></div>
+<div class="sc"><span class="key">Alt+F6</span><div class="kdesc"><strong>Receipt Note</strong><span>Goods receive — purchase ke pehle material entry</span></div></div>
+<div class="sc"><span class="key">Alt+F8</span><div class="kdesc"><strong>Delivery Note</strong><span>Goods dispatch — sales ke pehle delivery entry</span></div></div>
+<div class="cat-head">Navigation & Movement</div>
+<div class="sc"><span class="key blue">Enter</span><div class="kdesc"><strong>Accept / Open</strong><span>Selection confirm karo, item open karo</span></div></div>
+<div class="sc"><span class="key blue">Esc</span><div class="kdesc"><strong>Cancel / Back</strong><span>Current action cancel karo, pichhe jao</span></div></div>
+<div class="sc"><span class="key blue">Ctrl+A</span><div class="kdesc"><strong>Accept Voucher</strong><span>Voucher save karo (Enter ke baad confirm)</span></div></div>
+<div class="sc"><span class="key blue">Ctrl+Q</span><div class="kdesc"><strong>Quit Without Saving</strong><span>Changes save nahi karke bahar aao</span></div></div>
+<div class="sc"><span class="key">Page Up</span><div class="kdesc"><strong>Previous Voucher</strong><span>Voucher list mein pichhla voucher dekho</span></div></div>
+<div class="sc"><span class="key">Page Down</span><div class="kdesc"><strong>Next Voucher</strong><span>Voucher list mein agla voucher dekho</span></div></div>
+<div class="sc"><span class="key">Ctrl+Home</span><div class="kdesc"><strong>First Voucher</strong><span>List ke pehle voucher pe jao</span></div></div>
+<div class="sc"><span class="key">Ctrl+End</span><div class="kdesc"><strong>Last Voucher</strong><span>List ke aakhri voucher pe jao</span></div></div>
+<div class="cat-head">Editing & Functions</div>
+<div class="sc"><span class="key">Alt+D</span><div class="kdesc"><strong>Delete</strong><span>Voucher ya master delete karo</span></div></div>
+<div class="sc"><span class="key">Ctrl+Enter</span><div class="kdesc"><strong>Edit Master</strong><span>Voucher mein ledger ka naam likhte waqt master edit karo</span></div></div>
+<div class="sc"><span class="key">Alt+2</span><div class="kdesc"><strong>Duplicate Voucher</strong><span>Current voucher ki copy bana lo</span></div></div>
+<div class="sc"><span class="key">Ctrl+R</span><div class="kdesc"><strong>Repeat Last Narration</strong><span>Pichhli narration automatically fill karo</span></div></div>
+<div class="sc"><span class="key">Alt+C</span><div class="kdesc"><strong>Create Master on Fly</strong><span>Voucher mein naya ledger/item create karo</span></div></div>
+<div class="sc"><span class="key">Spacebar</span><div class="kdesc"><strong>Select Item (Multi)</strong><span>Multiple items select karna — reports mein</span></div></div>
+<div class="cat-head">Reports & Statements</div>
+<div class="sc"><span class="key gold">F10</span><div class="kdesc"><strong>Financial Statements</strong><span>Balance Sheet, P&L, Trial Balance access</span></div></div>
+<div class="sc"><span class="key gold">F2</span><div class="kdesc"><strong>Change Date / Period</strong><span>Voucher date ya report period badlo</span></div></div>
+<div class="sc"><span class="key gold">F3</span><div class="kdesc"><strong>Change Company</strong><span>Dusri company mein switch karo</span></div></div>
+<div class="sc"><span class="key">Alt+F1</span><div class="kdesc"><strong>Detailed View</strong><span>Report mein detailed breakdown dekho</span></div></div>
+<div class="sc"><span class="key">Alt+F2</span><div class="kdesc"><strong>Change Period</strong><span>Report ki date range change karo</span></div></div>
+<div class="sc"><span class="key">Ctrl+P</span><div class="kdesc"><strong>Print</strong><span>Report ya voucher print karo</span></div></div>
+<div class="sc"><span class="key">Ctrl+E</span><div class="kdesc"><strong>Export</strong><span>Report export karo — Excel, PDF, JSON</span></div></div>
+<div class="sc"><span class="key">Ctrl+M</span><div class="kdesc"><strong>Email</strong><span>Report directly email karo</span></div></div>
+<div class="cat-head">Masters (Ledger/Stock/Company)</div>
+<div class="sc"><span class="key">Alt+G</span><div class="kdesc"><strong>Go To</strong><span>Kisi bhi report ya master pe directly jao</span></div></div>
+<div class="sc"><span class="key">Ctrl+G</span><div class="kdesc"><strong>Go To (alternate)</strong><span>Quick navigation menu</span></div></div>
+<div class="sc"><span class="key">F11</span><div class="kdesc"><strong>Company Features</strong><span>GST, TDS, Payroll, Cost Centre enable/disable</span></div></div>
+<div class="sc"><span class="key">F12</span><div class="kdesc"><strong>Configure</strong><span>Report display options, columns, format change</span></div></div>
+<div class="cat-head">GST Specific</div>
+<div class="sc"><span class="key blue">Alt+J</span><div class="kdesc"><strong>GST Details</strong><span>Voucher mein GST breakup dekho (CGST/SGST/IGST)</span></div></div>
+<div class="sc"><span class="key blue">Ctrl+I</span><div class="kdesc"><strong>More Details</strong><span>Additional info — stock, GST, TDS details</span></div></div>
+</main>
+<footer><strong style="color:#fff;">Soft Skill Zone Institute</strong><br>📞 6202856897 | Near Gym Town, Pakri, Ara | @FinTaxLearning</footer>
+<script>
+function search(){
+  const q=document.getElementById('srch').value.toLowerCase();
+  document.querySelectorAll('.sc').forEach(el=>{
+    el.classList.toggle('hidden',q&&!el.textContent.toLowerCase().includes(q));
+  });
+}
+</script>
+</body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ledger Group Finder — Soft Skill Zone</title>
+<style>
+:root{--navy:#1F3864;--blue:#2E74B5;--gold:#F5A623;--green:#1A7C40;--bg:#F0F4FA;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:#1a1a2e;font-size:14px;}
+nav{background:var(--navy);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
+.nb{color:#fff;font-size:15px;font-weight:800;}.nb span{color:var(--gold);}
+.back{color:var(--gold);font-size:13px;font-weight:700;}
+.hero{background:var(--navy);color:#fff;padding:22px 16px;text-align:center;}
+.hero h1{font-size:21px;font-weight:900;margin-bottom:4px;}
+.hero p{font-size:12px;color:#aac4e8;}
+.sbox{background:#fff;padding:12px 16px;border-bottom:1px solid #e0eaf5;position:sticky;top:0;z-index:10;}
+.sbox input{width:100%;padding:11px 16px;border:1.5px solid #cde;border-radius:24px;font-size:14px;outline:none;}
+.sbox input:focus{border-color:var(--blue);}
+main{max-width:600px;margin:0 auto;padding:12px 14px 30px;}
+.grp-head{font-size:11px;font-weight:800;color:var(--blue);letter-spacing:2px;padding:12px 0 6px;border-bottom:2px solid var(--gold);margin-bottom:6px;}
+.lr{display:flex;gap:0;background:#fff;border-radius:8px;border:1px solid #e5eef8;margin-bottom:4px;overflow:hidden;}
+.lr.hidden{display:none;}
+.lr-name{flex:1;padding:9px 12px;font-size:13px;font-weight:600;}
+.lr-grp{background:#EBF3FB;padding:9px 12px;font-size:11px;font-weight:700;color:var(--navy);min-width:120px;text-align:center;display:flex;align-items:center;justify-content:center;}
+.lr-type{padding:9px 8px;font-size:10px;font-weight:700;min-width:50px;text-align:center;display:flex;align-items:center;justify-content:center;}
+.lr-type.asset{background:#E3F9EC;color:var(--green);}
+.lr-type.liability{background:#fff5f5;color:#C0392B;}
+.lr-type.income{background:#fffbea;color:#856404;}
+.lr-type.expense{background:#fce4ec;color:#880E4F;}
+.no-result{text-align:center;padding:40px;color:#aaa;display:none;}
+footer{background:var(--navy);color:#8aaace;text-align:center;padding:18px;font-size:12px;margin-top:10px;}
+</style></head><body>
+<nav><div class="nb">Soft Skill <span>Zone</span></div><a href="../index.html" class="back">← Back</a></nav>
+<div class="hero"><h1>📂 Ledger Group Finder</h1><p>Kaunsa ledger — kaunse Group mein? Tally Prime ke liye</p></div>
+<div class="sbox"><input type="text" id="srch" placeholder="🔍 Ledger name type karo — e.g. Salary, Bank, CGST..." oninput="search()"></div>
+<main>
+<div class="no-result" id="no_res">No match found. Dusra keyword try karo.</div>
+<div class="grp-head">ASSETS — Balance Sheet</div>
+<div class="lr"><div class="lr-name">Cash in Hand</div><div class="lr-grp">Cash-in-Hand</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Petty Cash</div><div class="lr-grp">Cash-in-Hand</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">HDFC Bank</div><div class="lr-grp">Bank Accounts</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">SBI Current Account</div><div class="lr-grp">Bank Accounts</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Bank Overdraft</div><div class="lr-grp">Bank OD Accounts</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Sundry Debtors / Customers</div><div class="lr-grp">Sundry Debtors</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Bills Receivable</div><div class="lr-grp">Bills Receivable</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Stock / Inventory</div><div class="lr-grp">Stock-in-Hand</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Raw Material Stock</div><div class="lr-grp">Stock-in-Hand</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Finished Goods</div><div class="lr-grp">Stock-in-Hand</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">WIP Stock</div><div class="lr-grp">Stock-in-Hand</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Prepaid Expenses</div><div class="lr-grp">Current Assets</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Advance to Supplier</div><div class="lr-grp">Current Assets</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Security Deposit</div><div class="lr-grp">Current Assets</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">TDS Receivable (26AS)</div><div class="lr-grp">Current Assets</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">GST Input (CGST)</div><div class="lr-grp">Current Assets</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">GST Input (SGST)</div><div class="lr-grp">Current Assets</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">GST Input (IGST)</div><div class="lr-grp">Current Assets</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Plant & Machinery</div><div class="lr-grp">Fixed Assets</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Furniture & Fixtures</div><div class="lr-grp">Fixed Assets</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Land & Building</div><div class="lr-grp">Fixed Assets</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Computer & Equipment</div><div class="lr-grp">Fixed Assets</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Vehicle</div><div class="lr-grp">Fixed Assets</div><div class="lr-type asset">ASS</div></div>
+<div class="lr"><div class="lr-name">Accumulated Depreciation</div><div class="lr-grp">Fixed Assets</div><div class="lr-type asset">ASS</div></div>
+<div class="grp-head">LIABILITIES — Balance Sheet</div>
+<div class="lr"><div class="lr-name">Capital Account</div><div class="lr-grp">Capital Account</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">Drawings</div><div class="lr-grp">Capital Account</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">Retained Earnings</div><div class="lr-grp">Reserves & Surplus</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">General Reserve</div><div class="lr-grp">Reserves & Surplus</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">Sundry Creditors / Suppliers</div><div class="lr-grp">Sundry Creditors</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">Bills Payable</div><div class="lr-grp">Bills Payable</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">Bank Loan (Term)</div><div class="lr-grp">Loans (Liability)</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">Bank Loan (Working Capital)</div><div class="lr-grp">Bank OD Accounts</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">Salary Payable</div><div class="lr-grp">Current Liabilities</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">Salary Outstanding</div><div class="lr-grp">Current Liabilities</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">Audit Fees Payable</div><div class="lr-grp">Current Liabilities</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">Rent Payable</div><div class="lr-grp">Current Liabilities</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">GST Payable (CGST)</div><div class="lr-grp">Duties & Taxes</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">GST Payable (SGST)</div><div class="lr-grp">Duties & Taxes</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">GST Payable (IGST)</div><div class="lr-grp">Duties & Taxes</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">TDS Payable</div><div class="lr-grp">Duties & Taxes</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">PF Payable</div><div class="lr-grp">Duties & Taxes</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">ESI Payable</div><div class="lr-grp">Duties & Taxes</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">Professional Tax Payable</div><div class="lr-grp">Duties & Taxes</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">Income Tax Payable</div><div class="lr-grp">Duties & Taxes</div><div class="lr-type liability">LIA</div></div>
+<div class="lr"><div class="lr-name">Advance from Customer</div><div class="lr-grp">Current Liabilities</div><div class="lr-type liability">LIA</div></div>
+<div class="grp-head">INCOME — P&L Account</div>
+<div class="lr"><div class="lr-name">Sales (Domestic)</div><div class="lr-grp">Sales Accounts</div><div class="lr-type income">INC</div></div>
+<div class="lr"><div class="lr-name">Sales (Export)</div><div class="lr-grp">Sales Accounts</div><div class="lr-type income">INC</div></div>
+<div class="lr"><div class="lr-name">Steel Gate Sales</div><div class="lr-grp">Sales Accounts</div><div class="lr-type income">INC</div></div>
+<div class="lr"><div class="lr-name">Fabrication Sales</div><div class="lr-grp">Sales Accounts</div><div class="lr-type income">INC</div></div>
+<div class="lr"><div class="lr-name">AMC Service Income</div><div class="lr-grp">Sales Accounts</div><div class="lr-type income">INC</div></div>
+<div class="lr"><div class="lr-name">Job Work Income</div><div class="lr-grp">Sales Accounts</div><div class="lr-type income">INC</div></div>
+<div class="lr"><div class="lr-name">Interest Received</div><div class="lr-grp">Indirect Income</div><div class="lr-type income">INC</div></div>
+<div class="lr"><div class="lr-name">Discount Received</div><div class="lr-grp">Indirect Income</div><div class="lr-type income">INC</div></div>
+<div class="lr"><div class="lr-name">Commission Income</div><div class="lr-grp">Indirect Income</div><div class="lr-type income">INC</div></div>
+<div class="lr"><div class="lr-name">Rent Income</div><div class="lr-grp">Indirect Income</div><div class="lr-type income">INC</div></div>
+<div class="lr"><div class="lr-name">Purchase Return</div><div class="lr-grp">Purchase Accounts</div><div class="lr-type income">INC</div></div>
+<div class="lr"><div class="lr-name">Sales Return</div><div class="lr-grp">Sales Accounts</div><div class="lr-type income">INC</div></div>
+<div class="grp-head">EXPENSES — P&L Account</div>
+<div class="lr"><div class="lr-name">Raw Material Purchase</div><div class="lr-grp">Purchase Accounts</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Coal Purchase</div><div class="lr-grp">Purchase Accounts</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Packing Material</div><div class="lr-grp">Purchase Accounts</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Direct Labour / Wages</div><div class="lr-grp">Direct Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Factory Power Charges</div><div class="lr-grp">Direct Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Job Work Expenses</div><div class="lr-grp">Direct Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Freight Inward</div><div class="lr-grp">Direct Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Salary Expenses</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Office Rent</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Electricity Charges</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Telephone Expenses</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Audit & Legal Fees</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Advertisement Expenses</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Travelling Expenses</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Depreciation</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Repairs & Maintenance</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Freight Outward</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Bank Charges</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Interest on Loan</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Bad Debts</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Discount Allowed</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">PF Employer Contribution</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">ESI Employer Contribution</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+<div class="lr"><div class="lr-name">Staff Welfare</div><div class="lr-grp">Indirect Expenses</div><div class="lr-type expense">EXP</div></div>
+</main>
+<footer><strong style="color:#fff;">Soft Skill Zone Institute</strong><br>📞 6202856897 | Near Gym Town, Pakri, Ara | @FinTaxLearning</footer>
+<script>
+function search(){
+  const q=document.getElementById('srch').value.toLowerCase();
+  let found=0;
+  document.querySelectorAll('.lr').forEach(el=>{
+    const m=!q||el.textContent.toLowerCase().includes(q);
+    el.classList.toggle('hidden',!m);
+    if(m)found++;
+  });
+  document.getElementById('no_res').style.display=(q&&found===0)?'block':'none';
+}
+</script>
+</body></html>
